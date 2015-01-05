@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="err_signin">Błąd logowania</string>
+	<string name="err_network">Błąd sieciowy</string>
+</resources>
