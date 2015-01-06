@@ -12,8 +12,12 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import me.anonim1133.zacja.auth.ModeChoice;
 import me.anonim1133.zacja.auth.SignIn;
 import me.anonim1133.zacja.auth.SignUp;
+import me.anonim1133.zacja.modes.CTF.CTF;
+import me.anonim1133.zacja.modes.Training.ActivityChoice;
+import me.anonim1133.zacja.modes.Work.Work;
 
 public class MainActivity extends Activity {
 
@@ -105,6 +109,33 @@ public class MainActivity extends Activity {
 	}
 
 	public void showMainScreen(){
-		Log.d("Main", "Key valid, showing main screen");
+		fragment = new ModeChoice();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.commit();
+	}
+
+	public void showCTF(){
+		fragment = new CTF();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("CTF")
+				.commit();
+	}
+
+	public void showTraining(){
+		fragment = new ActivityChoice();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Training")
+				.commit();
+	}
+
+	public void showWork(){
+		fragment = new Work();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Work")
+				.commit();
 	}
 }
