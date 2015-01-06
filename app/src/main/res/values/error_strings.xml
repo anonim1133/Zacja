@@ -2,4 +2,7 @@
 <resources>
 	<string name="err_signin">Błąd logowania</string>
 	<string name="err_network">Błąd sieciowy</string>
+	<string name="err_passwords_not_matches">Podane hasła różnią się</string>
+	<string name="err_empty_fields">Wszystkie pola są wymagane</string>
+	<string name="err_up">Błąd podczas rejestracji, sprawdź dane po czym spróbuj ponownie.</string>
 </resources>

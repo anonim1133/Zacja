@@ -23,10 +23,18 @@
 		android:hint="@string/password"/>
 
 	<Button
-		android:layout_width="wrap_content"
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/signin"
-		android:id="@+id/btn_sign_in"
+		android:id="@+id/btn_in_signin"
 		android:layout_gravity="center_horizontal"
 		android:longClickable="false"/>
+
+	<Button
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/signup"
+		android:id="@+id/btn_in_signup"
+		android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

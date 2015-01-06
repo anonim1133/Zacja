@@ -109,8 +109,6 @@ public class Api {
 
 		fields.clear();
 
-		Log.d("A", "URL: " + url);
-
 		HttpGet http = new HttpGet(url);
 
 		//Header with apikey

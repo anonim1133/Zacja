@@ -4,14 +4,18 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import me.anonim1133.zacja.Api;
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 
 public class SignIn extends Fragment {
@@ -25,10 +29,16 @@ public class SignIn extends Fragment {
 
 		api = new Api( getString(R.string.server_ip), getString(R.string.server_port) );
 
-		rootView.findViewById(R.id.btn_sign_in).setOnClickListener(new View.OnClickListener() {
+		rootView.findViewById(R.id.btn_in_signin).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				onSignIn();
+			}
+		});
+		rootView.findViewById(R.id.btn_in_signup).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				onSignUp();
 			}
 		});
 
@@ -36,8 +46,9 @@ public class SignIn extends Fragment {
 	}
 
 	private void onSignIn(){
-		Context context = getActivity();
-		CharSequence text = getString(R.string.signin_error);
+		final Context context = getActivity();
+
+		CharSequence text = getString(R.string.err_signin);
 		int duration = Toast.LENGTH_SHORT;
 
 		final Toast toast = Toast.makeText(context, text, duration);
@@ -62,12 +73,13 @@ public class SignIn extends Fragment {
 						editor.putString("apikey", api_key);
 						editor.commit();
 					}else{
-						toast.setText(R.string.err_signin);
+						toast.setText(getString(R.string.err_signin));
 						toast.show();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					toast.setText(R.string.err_network);
+
+					toast.setText(getString(R.string.err_network));
 					toast.show();
 				}
 			}
@@ -75,5 +87,10 @@ public class SignIn extends Fragment {
 
 		thread.start();
 
+	}
+
+	void onSignUp(){
+		MainActivity a = (MainActivity)getActivity();
+		a.showSignUp();
 	}
 }

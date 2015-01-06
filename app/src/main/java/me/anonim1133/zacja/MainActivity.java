@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import me.anonim1133.zacja.auth.SignIn;
+import me.anonim1133.zacja.auth.SignUp;
 
 public class MainActivity extends Activity {
 
@@ -25,16 +28,40 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		if (savedInstanceState == null) {
-			SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-			apikey = sharedPref.getString("apikey", "false");
+			main();
+		}
+	}
 
-			Log.d("MAIN", apikey);
-			if(apikey.matches("false")){
-				//signin
-				showSignIn();
-			}else{
-				//check key validity
-			}
+	public void main(){
+		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		apikey = sharedPref.getString("apikey", "false");
+
+		Log.d("MAIN", apikey);
+		if(apikey.matches("false")){
+			//signin
+			showSignIn();
+		}else{
+			//check key validity
+			Log.d("Main", "checking key validity");
+
+			Thread thread = new Thread(new Runnable(){
+				@Override
+				public void run() {
+					try {
+						Api api = new Api( getString(R.string.server_ip), getString(R.string.server_port) );
+						api.addField("key", apikey);
+
+						String valid = api.get("LoginCheck");
+						if( valid == "false" ) showSignIn();
+						else showMainScreen();
+					} catch (Exception e) {
+						e.printStackTrace();
+						Toast.makeText(getApplicationContext(), getString(R.string.err_network), Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
+
+			thread.start();
 		}
 	}
 
@@ -66,7 +93,18 @@ public class MainActivity extends Activity {
 	public void showSignIn(){
 		fragment = new SignIn();
 		getFragmentManager().beginTransaction()
-							.add(R.id.container, fragment)
+							.replace(R.id.container, fragment)
 							.commit();
+	}
+
+	public void showSignUp(){
+		fragment = new SignUp();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.commit();
+	}
+
+	public void showMainScreen(){
+		Log.d("Main", "Key valid, showing main screen");
 	}
 }
