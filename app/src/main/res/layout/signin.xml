@@ -24,11 +24,11 @@
 
 	<Button
 		android:layout_width="100dp"
-		android:layout_height="wrap_content"
-		android:text="@string/signin"
+		android:layout_height="100dp"
 		android:id="@+id/btn_in_signin"
 		android:layout_gravity="center_horizontal"
-		android:longClickable="false"/>
+		android:longClickable="false"
+		android:background="@drawable/signin"/>
 
 	<Button
 		android:layout_width="fill_parent"

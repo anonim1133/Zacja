@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,6 +39,9 @@ public class MainActivity extends Activity {
 	}
 
 	public void main(){
+		// Let's start with hiding keyboard
+		hideKeyboard();
+
 		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 		apikey = sharedPref.getString("apikey", "false");
 
@@ -92,6 +97,16 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+
+	private void hideKeyboard() {
+		// Check if no view has focus:
+		View view = this.getCurrentFocus();
+		if (view != null) {
+			InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+			inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+	}
+
 	//Fragments
 
 	public void showSignIn(){
@@ -109,6 +124,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void showMainScreen(){
+		hideKeyboard();
 		fragment = new ModeChoice();
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -42,11 +43,31 @@ public class SignIn extends Fragment {
 			}
 		});
 
+		rootView.findViewById(R.id.txt_login).setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+				}
+			}
+		});
+
+
+		rootView.findViewById(R.id.txt_password).setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+				}
+			}
+		});
+
 		return rootView;
 	}
 
 	private void onSignIn(){
 		final Context context = getActivity();
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		CharSequence text = getString(R.string.err_signin);
 		int duration = Toast.LENGTH_SHORT;
@@ -72,6 +93,9 @@ public class SignIn extends Fragment {
 						SharedPreferences.Editor editor = sharedPref.edit();
 						editor.putString("apikey", api_key);
 						editor.commit();
+
+						MainActivity a = (MainActivity)getActivity();
+						a.showMainScreen();
 					}else{
 						toast.setText(getString(R.string.err_signin));
 						toast.show();
