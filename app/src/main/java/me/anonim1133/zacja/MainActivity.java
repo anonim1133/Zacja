@@ -18,7 +18,14 @@ import me.anonim1133.zacja.auth.ModeChoice;
 import me.anonim1133.zacja.auth.SignIn;
 import me.anonim1133.zacja.auth.SignUp;
 import me.anonim1133.zacja.modes.CTF.CTF;
+import me.anonim1133.zacja.modes.CTF.MapsActivity;
 import me.anonim1133.zacja.modes.Training.ActivityChoice;
+import me.anonim1133.zacja.modes.Training.Biking;
+import me.anonim1133.zacja.modes.Training.Jumping;
+import me.anonim1133.zacja.modes.Training.Running;
+import me.anonim1133.zacja.modes.Training.SelectActivity;
+import me.anonim1133.zacja.modes.Training.Squats;
+import me.anonim1133.zacja.modes.Training.Walking;
 import me.anonim1133.zacja.modes.Work.Work;
 
 public class MainActivity extends Activity {
@@ -132,7 +139,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void showCTF(){
-		fragment = new CTF();
+		fragment = new MapsActivity();
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.addToBackStack("CTF")
@@ -140,7 +147,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void showTraining(){
-		fragment = new ActivityChoice();
+		fragment = new SelectActivity();
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.addToBackStack("Training")
@@ -152,6 +159,56 @@ public class MainActivity extends Activity {
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.addToBackStack("Work")
+				.commit();
+	}
+
+
+	/* Selecting proper fragments for activities */
+
+	public void selectActivity(View view){
+		fragment = new SelectActivity();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.commit();
+	}
+
+	public void selectBiking(View view){
+		fragment = new Biking();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Biking")
+				.commit();
+	}
+
+	public void selectRunning(View view){
+		fragment = new Running();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Running")
+				.commit();
+	}
+
+	public void selectWalking(View view){
+		fragment = new Walking();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Walking")
+				.commit();
+	}
+
+	public void selectJumping(View view){
+		fragment =  new Jumping();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container,fragment)
+				.addToBackStack("Jumping")
+				.commit();
+	}
+
+	public void selectSquats(View view){
+		fragment = new Squats();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Squats")
 				.commit();
 	}
 }

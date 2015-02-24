@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:gravity="center">
 
 	<Button
 		android:layout_width="100dp"
@@ -10,7 +11,7 @@
 		android:id="@+id/btn_ctf"
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/ctf"
-		android:layout_marginTop="16dp"/>
+		/>
 
 	<Button
 		android:layout_width="100dp"
@@ -25,6 +26,6 @@
 		android:layout_height="100dp"
 		android:id="@+id/btn_training"
 		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="16dp"
-		android:background="@drawable/training"/>
+		android:background="@drawable/training"
+		android:layout_marginTop="16dp"/>
 </LinearLayout>

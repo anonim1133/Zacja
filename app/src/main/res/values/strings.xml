@@ -11,4 +11,8 @@
 	<string name="email">E-Mail</string>
 	<string name="repeat_password">Powtórz hasło</string>
 
+
+	<!-- CTF -->
+
+	<string name="txt_btn_scan">Skanuj</string>
 </resources>
