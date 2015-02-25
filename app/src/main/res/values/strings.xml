@@ -3,6 +3,8 @@
 
     <string name="app_name">Zacja</string>
     <string name="action_settings">Ustawienia</string>
+	<string name="action_list">Treningi</string>
+	<string name="action_sync">Synchronizuj</string>
 	<string name="signin">Zaloguj</string>
 	<string name="signup">Rejestracja</string>
 	<string name="username">Login</string>

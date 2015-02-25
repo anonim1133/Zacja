@@ -5,6 +5,7 @@
 		<item name="colorPrimaryDark">@color/ciemny</item>
 		<item name="colorAccent">@color/accent_material_light</item>
 		<item name="android:statusBarColor">@color/ciemny</item>
+		<item name="android:homeAsUpIndicator">@drawable/ic_launcher</item>
 		<!-- <item name="android:windowTranslucentStatus">true</item> -->
 		<!--<item name="android:windowTranslucentNavigation">true</item>-->
 	</style>

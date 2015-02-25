@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +31,7 @@ import me.anonim1133.zacja.modes.Training.Squats;
 import me.anonim1133.zacja.modes.Training.Walking;
 import me.anonim1133.zacja.modes.Work.Work;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
 	Fragment fragment;
 
@@ -48,6 +51,12 @@ public class MainActivity extends Activity {
 	public void main(){
 		// Let's start with hiding keyboard
 		hideKeyboard();
+
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayUseLogoEnabled(false);
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setHomeButtonEnabled(false);
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 		apikey = sharedPref.getString("apikey", "false");
@@ -81,29 +90,54 @@ public class MainActivity extends Activity {
 		}
 	}
 
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_main, menu);
-		return true;
+		// Inflate the menu items for use in the action bar
+		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
 
-		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
-			return true;
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				onHomePressed();
+				return true;
+
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onBackPressed()	{
+		if (getFragmentManager().getBackStackEntryCount() > 0) {
+			getFragmentManager().popBackStack();
+		} else {
+			super.onBackPressed();
+		}
+	}
+
+	private void onHomePressed(){
+
+	}
+
+	private void onListPressed(){
+
+	}
+
+	private void onSyncPressed(){
+
+	}
+
+	private void onSettingsPressed(){
+
+	}
 
 	private void hideKeyboard() {
 		// Check if no view has focus:
@@ -194,6 +228,8 @@ public class MainActivity extends Activity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Walking")
 				.commit();
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public void selectJumping(View view){
@@ -202,6 +238,8 @@ public class MainActivity extends Activity {
 				.replace(R.id.container,fragment)
 				.addToBackStack("Jumping")
 				.commit();
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public void selectSquats(View view){
@@ -210,5 +248,7 @@ public class MainActivity extends Activity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Squats")
 				.commit();
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 }
