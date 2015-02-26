@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingBottom="16dp">
+
+	<TextView
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:text="0"
+		android:id="@+id/id"
+		android:visibility="gone"/>
+
+	<ImageView
+		android:layout_width="72dp"
+		android:layout_height="72dp"
+		android:id="@+id/imageView"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Activity"
+		android:id="@+id/training_type"
+		android:layout_alignParentTop="true"
+		android:layout_toRightOf="@+id/imageView"
+		/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="points"
+		android:id="@+id/training_points"
+		android:layout_below="@+id/training_stats"
+		android:layout_toRightOf="@+id/imageView"
+		android:layout_toEndOf="@+id/imageView"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="stats"
+		android:id="@+id/training_stats"
+		android:layout_below="@+id/training_type"
+		android:layout_toRightOf="@+id/imageView"
+		android:layout_toEndOf="@+id/imageView"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="date"
+		android:id="@+id/training_date"
+		android:layout_alignBottom="@+id/training_type"
+		android:layout_toRightOf="@+id/training_type"
+		android:layout_toEndOf="@+id/training_type"
+		android:layout_alignBaseline="@+id/training_type"
+		android:layout_marginLeft="16dp"/>
+
+</RelativeLayout>

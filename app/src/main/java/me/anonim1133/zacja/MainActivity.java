@@ -1,12 +1,10 @@
 package me.anonim1133.zacja;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -14,15 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import me.anonim1133.zacja.auth.ModeChoice;
 import me.anonim1133.zacja.auth.SignIn;
 import me.anonim1133.zacja.auth.SignUp;
-import me.anonim1133.zacja.modes.CTF.CTF;
 import me.anonim1133.zacja.modes.CTF.MapsActivity;
-import me.anonim1133.zacja.modes.Training.ActivityChoice;
 import me.anonim1133.zacja.modes.Training.Biking;
 import me.anonim1133.zacja.modes.Training.Jumping;
 import me.anonim1133.zacja.modes.Training.Running;
@@ -30,6 +25,7 @@ import me.anonim1133.zacja.modes.Training.SelectActivity;
 import me.anonim1133.zacja.modes.Training.Squats;
 import me.anonim1133.zacja.modes.Training.Walking;
 import me.anonim1133.zacja.modes.Work.Work;
+import me.anonim1133.zacja.traininglist.TrainingList;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -108,7 +104,15 @@ public class MainActivity extends ActionBarActivity {
 			case android.R.id.home:
 				onHomePressed();
 				return true;
-
+			case R.id.action_list:
+					onListPressed();
+				return true;
+			case R.id.action_sync:
+					onSyncPressed();
+				return true;
+			case R.id.action_settings:
+					onSettingsPressed();
+				return true;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -128,7 +132,9 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void onListPressed(){
+		setTitle("Lista");
 
+		showList();
 	}
 
 	private void onSyncPressed(){
@@ -228,8 +234,6 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Walking")
 				.commit();
-
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public void selectJumping(View view){
@@ -238,8 +242,6 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container,fragment)
 				.addToBackStack("Jumping")
 				.commit();
-
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public void selectSquats(View view){
@@ -248,7 +250,13 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Squats")
 				.commit();
+	}
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	public void showList(){
+		fragment = new TrainingList();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("List")
+				.commit();
 	}
 }

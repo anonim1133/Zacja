@@ -1,6 +1,7 @@
 package me.anonim1133.zacja.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -11,10 +12,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	private static final String TAG = "DBHelper";
 	private static String DATABASE_NAME = "zacja.db";
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 1;
 
 	private SQLiteDatabase db;
-	private DBTraining training;
+	public DBTraining training;
 
 	public DataBaseHelper(Context context) throws SQLException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

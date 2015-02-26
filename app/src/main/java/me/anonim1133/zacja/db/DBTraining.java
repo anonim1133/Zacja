@@ -74,10 +74,12 @@ public class DBTraining {
 		Cursor cursor;
 
 		if(limit != 0)
-			cursor = db.query(TABLE_NAME , new String[] {"id"}, null, null, null, null, "id DESC", String.valueOf(limit));
+			cursor = db.query(TABLE_NAME , new String[] {"rowid _id,*"}, null, null, null, null, "id DESC", String.valueOf(limit));
 		else
-			cursor = db.query(TABLE_NAME , new String[] {"id"}, null, null, null, null, "id DESC", null);
+			cursor = db.query(TABLE_NAME , new String[] {"rowid _id,*"}, null, null, null, null, "id DESC", null);
 
+
+		Log.d(TAG, String.valueOf(cursor.getCount()));
 		return cursor;
 	}
 }
