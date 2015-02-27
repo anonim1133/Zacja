@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
-
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,15 +42,17 @@ public class TrainingAdapter extends CursorAdapter {
 			SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
 			txt_date = fmtOut.format(date);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
 		}
 
+		String txt_stats;
+		if(txt_type.equals("Squats") || txt_type.equals("Jumping")){
+			txt_stats = cursor.getString(cursor.getColumnIndexOrThrow("moves")) + " powtórzeń w " + cursor.getString(cursor.getColumnIndexOrThrow("distance")) + " seriach";
+		}else{
+			txt_stats = cursor.getString(cursor.getColumnIndexOrThrow("distance"));
+		}
 
-		String txt_stats = cursor.getString(cursor.getColumnIndexOrThrow("distance"));
 		//ToDo: Zliczać punkty
 		String txt_points = "0 punktów"; //cursor.getString(cursor.getColumnIndexOrThrow("points"));
 
@@ -62,5 +61,6 @@ public class TrainingAdapter extends CursorAdapter {
 		tv_date.setText(txt_date);
 		tv_stats.setText(txt_stats);
 		tv_points.setText(txt_points);
+
 	}
 }
