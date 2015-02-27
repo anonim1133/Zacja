@@ -17,4 +17,9 @@
 	<!-- CTF -->
 
 	<string name="txt_btn_scan">Skanuj</string>
+
+	<!-- LIST -->
+	<string name="moves">\u0020 powtórzeń w \u0020</string>
+	<string name="succesions">\u0020 seriach</string>
+	<string name="km_in">\u0020 kilometrów</string>
 </resources>

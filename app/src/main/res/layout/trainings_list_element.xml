@@ -15,7 +15,8 @@
 	<ImageView
 		android:layout_width="72dp"
 		android:layout_height="72dp"
-		android:id="@+id/imageView"/>
+		android:id="@+id/icon"
+		android:layout_marginRight="8dp"/>
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -24,8 +25,8 @@
 		android:text="Activity"
 		android:id="@+id/training_type"
 		android:layout_alignParentTop="true"
-		android:layout_toRightOf="@+id/imageView"
-		/>
+		android:layout_toRightOf="@+id/icon"
+		android:textColor="@color/ciemny"/>
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -34,8 +35,8 @@
 		android:text="points"
 		android:id="@+id/training_points"
 		android:layout_below="@+id/training_stats"
-		android:layout_toRightOf="@+id/imageView"
-		android:layout_toEndOf="@+id/imageView"/>
+		android:layout_toRightOf="@+id/icon"
+		android:layout_toEndOf="@+id/icon"/>
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -44,8 +45,8 @@
 		android:text="stats"
 		android:id="@+id/training_stats"
 		android:layout_below="@+id/training_type"
-		android:layout_toRightOf="@+id/imageView"
-		android:layout_toEndOf="@+id/imageView"/>
+		android:layout_toRightOf="@+id/icon"
+		android:layout_toEndOf="@+id/icon"/>
 
 	<TextView
 		android:layout_width="wrap_content"
