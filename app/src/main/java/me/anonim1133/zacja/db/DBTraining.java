@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import me.anonim1133.zacja.utils.ScoreCalculator;
+
 public class DBTraining {
 	private static String TAG = "ZACJA_DB_TRAIN";
 	private static String TABLE_NAME = "training";
@@ -17,7 +19,15 @@ public class DBTraining {
 
 	public boolean add(String gpx, String training_type, long time, long time_active, int moves, float speed_max, float speed_avg, float tempo_min, float tempo_avg, float distance, int altitude_min, int altitude_max, int altitude_upward, int altitude_downward){
 		ContentValues values = new ContentValues();
+
+		ScoreCalculator scoring = new ScoreCalculator(training_type);
+		scoring.setAltitude(altitude_upward);
+		scoring.setAverage(Math.round(speed_avg));
+		scoring.setDistance(Math.round(distance));
+		scoring.setMoves(moves);
+
 		values.put("gpx", gpx);
+		values.put("score", scoring.getScore());
 		values.put("training_type", training_type);
 		values.put("time", time);
 		values.put("time_active", time_active);
@@ -45,7 +55,14 @@ public class DBTraining {
 
 	public boolean add(String gpx, String training_type, long time, long time_active, float speed_max, float speed_avg, float tempo_min, float tempo_avg, float distance, int altitude_min, int altitude_max, int altitude_upward, int altitude_downward){
 		ContentValues values = new ContentValues();
+
+		ScoreCalculator scoring = new ScoreCalculator(training_type);
+		scoring.setAltitude(altitude_upward);
+		scoring.setAverage(Math.round(speed_avg));
+		scoring.setDistance(Math.round(distance));
+
 		values.put("gpx", gpx);
+		values.put("score", scoring.getScore());
 		values.put("training_type", training_type);
 		values.put("time", time);
 		values.put("time_active", time_active);
@@ -78,8 +95,6 @@ public class DBTraining {
 		else
 			cursor = db.query(TABLE_NAME , new String[] {"rowid _id,*"}, null, null, null, null, "id DESC", null);
 
-
-		Log.d(TAG, String.valueOf(cursor.getCount()));
 		return cursor;
 	}
 }
