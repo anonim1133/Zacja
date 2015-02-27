@@ -93,6 +93,8 @@ public class Squats extends Fragment {
 		chrono.setBase(SystemClock.elapsedRealtime());
 		chrono.start();
 
+		nextSuccession();
+
 		rootView.findViewById(R.id.btn_start).setVisibility(View.GONE);
 		rootView.findViewById(R.id.btn_next).setVisibility(View.VISIBLE);
 		rootView.findViewById(R.id.btn_stop).setVisibility(View.VISIBLE);
