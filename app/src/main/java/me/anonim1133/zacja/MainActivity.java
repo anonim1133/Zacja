@@ -221,7 +221,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void selectRunning(View view){
-		fragment = new Running();
+		fragment = new Walking(); // Little cheat, becouse it counts steps, so its adequate for walking and running.
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.addToBackStack("Running")
