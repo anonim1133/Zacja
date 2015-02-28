@@ -35,7 +35,15 @@ public class TrainingAdapter extends CursorAdapter {
 
 
 		//Get corresponding strings
-		String txt_type = cursor.getString(cursor.getColumnIndexOrThrow("training_type"));
+		String txt_type;
+		switch (cursor.getString(cursor.getColumnIndexOrThrow("training_type"))){
+			case "Biking": txt_type = "Rower"; break;
+			case "Running": txt_type = "Bieganie"; break;
+			case "Walking": txt_type = "Chód"; break;
+			case "Squats": txt_type = "Przysiady"; break;
+			case "Jumping": txt_type = "Podskoki"; break;
+			default: txt_type = "Nieznany"; break;
+		}
 
 		String txt_date = "";
 		String dtStart = cursor.getString(cursor.getColumnIndexOrThrow("gpx"));
