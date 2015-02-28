@@ -14,14 +14,7 @@ public class ActivityChoice extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.training_main, container, false);
-/*
-		rootView.findViewById(R.id.btn_ctf).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
 
-			}
-		});
-*/
 		return rootView;
 	}
 }
