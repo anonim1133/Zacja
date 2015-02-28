@@ -25,6 +25,7 @@ import me.anonim1133.zacja.modes.Training.SelectActivity;
 import me.anonim1133.zacja.modes.Training.Squats;
 import me.anonim1133.zacja.modes.Training.Walking;
 import me.anonim1133.zacja.modes.Work.Work;
+import me.anonim1133.zacja.traininglist.TrainingDetailedView;
 import me.anonim1133.zacja.traininglist.TrainingList;
 
 public class MainActivity extends ActionBarActivity {
@@ -256,6 +257,20 @@ public class MainActivity extends ActionBarActivity {
 		fragment = new TrainingList();
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
+				.addToBackStack("List")
+				.commit();
+	}
+
+	public void showTrainingDetails(int id){
+		TrainingDetailedView trainingDetailedView = new TrainingDetailedView();
+
+		Bundle bundle = new Bundle();
+		bundle.putInt("id", id);
+
+		trainingDetailedView.setArguments(bundle);
+
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, trainingDetailedView)
 				.addToBackStack("List")
 				.commit();
 	}

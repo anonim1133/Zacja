@@ -69,8 +69,6 @@ public class TrainingAdapter extends CursorAdapter {
 		String txt_points = cursor.getString(cursor.getColumnIndexOrThrow("score")) + context.getString(R.string.scores);
 
 		// Populate fields with extracted properties
-		icon.setImageResource(R.drawable.biking);
-
 		switch (cursor.getString(cursor.getColumnIndexOrThrow("training_type"))){
 			case "Biking": icon.setImageResource(R.drawable.biking); break;
 			case "Running": icon.setImageResource(R.drawable.running); break;

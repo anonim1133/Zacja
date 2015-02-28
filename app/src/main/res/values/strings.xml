@@ -23,4 +23,16 @@
 	<string name="succesions">\u0020 seriach</string>
 	<string name="km_in">\u0020 kilometrów</string>
 	<string name="scores">\u0020 punktów</string>
+	<string name="distance">Dystans</string>
+	<string name="avg_tempo">Tempo</string>
+	<string name="avg_speed">Prędkość</string>
+	<string name="time">Czas</string>
+	<string name="time_active">Aktywny</string>
+	<string name="upward">W górę</string>
+	<string name="Downward">W dół</string>
+	<string name="tempo_unit">min/km</string>
+	<string name="metric_1000_unit">km</string>
+	<string name="metric_speed_unit">km/h</string>
+	<string name="metric_100_unit">m</string>
+
 </resources>

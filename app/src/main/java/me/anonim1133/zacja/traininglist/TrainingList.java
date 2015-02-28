@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 import me.anonim1133.zacja.db.DataBaseHelper;
 
@@ -33,7 +34,10 @@ public class TrainingList extends Fragment {
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterViewCompat, View view, int i, long l) {
-				Toast.makeText(getActivity(), "Click ListItem Number ", Toast.LENGTH_LONG).show();
+				//Toast.makeText(getActivity(), "Click ListItem Number " + String.valueOf(l), Toast.LENGTH_LONG).show();
+				MainActivity a = (MainActivity)getActivity();
+				a.showTrainingDetails((int)l);
+
 			}
 		});
 
