@@ -59,7 +59,7 @@ public class TrainingAdapter extends CursorAdapter {
 		}
 
 		String txt_stats;
-		if(txt_type.equals("Squats") || txt_type.equals("Jumping")){
+		if(txt_type.equals("Przysiady") || txt_type.equals("Podskoki")){
 			txt_stats = cursor.getString(cursor.getColumnIndexOrThrow("moves")) + context.getString(R.string.moves)+ cursor.getString(cursor.getColumnIndexOrThrow("distance")) + context.getString(R.string.succesions);
 		}else{
 			txt_stats = cursor.getString(cursor.getColumnIndexOrThrow("distance"));
@@ -69,18 +69,18 @@ public class TrainingAdapter extends CursorAdapter {
 		String txt_points = cursor.getString(cursor.getColumnIndexOrThrow("score")) + context.getString(R.string.scores);
 
 		// Populate fields with extracted properties
-		switch (cursor.getString(cursor.getColumnIndexOrThrow("training_type"))){
-			case "Biking": icon.setImageResource(R.drawable.biking); break;
-			case "Running": icon.setImageResource(R.drawable.running); break;
-			case "Walking": icon.setImageResource(R.drawable.running); break;
-			case "Squats": icon.setImageResource(R.drawable.squats); break;
-			case "Jumping": icon.setImageResource(R.drawable.jumping); break;
+		switch (txt_type){
+			case "Rower": icon.setImageResource(R.drawable.biking); break;
+			case "Bieganie": icon.setImageResource(R.drawable.running); break;
+			case "Chód": icon.setImageResource(R.drawable.walking); break;
+			case "Przysiady": icon.setImageResource(R.drawable.squats); break;
+			case "Podskoki": icon.setImageResource(R.drawable.jumping); break;
 			default: icon.setImageResource(R.drawable.ic_launcher); break;
 		}
 
 		tv_type.setText(txt_type);
 		tv_date.setText(txt_date);
-		if(txt_type.equals("Biking") || txt_type.equals("Walking"))
+		if(txt_type.equals("Rower") || txt_type.equals("Chód") || txt_type.equals("Bieganie"))
 			tv_stats.setText(String.format("%.2f %s", Float.parseFloat(txt_stats),  context.getString(R.string.km_in)));
 		else
 			tv_stats.setText(txt_stats);
