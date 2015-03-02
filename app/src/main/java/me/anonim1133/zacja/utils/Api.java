@@ -1,9 +1,4 @@
-package me.anonim1133.zacja;
-
-import android.content.Context;
-import android.os.Debug;
-import android.os.StrictMode;
-import android.util.Log;
+package me.anonim1133.zacja.utils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

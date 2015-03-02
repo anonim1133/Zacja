@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import me.anonim1133.zacja.Api;
+import me.anonim1133.zacja.utils.Api;
 import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 
