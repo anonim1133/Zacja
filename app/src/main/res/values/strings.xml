@@ -34,5 +34,6 @@
 	<string name="metric_1000_unit">km</string>
 	<string name="metric_speed_unit">km/h</string>
 	<string name="metric_100_unit">m</string>
+	<string name="delete_training_action">Usuń trening</string>
 
 </resources>

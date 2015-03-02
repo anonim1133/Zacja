@@ -113,6 +113,8 @@ public class MainActivity extends ActionBarActivity {
 				return true;
 			case R.id.action_settings:
 					onSettingsPressed();
+			case R.id.action_delete:
+				onDeletePressed();
 				return true;
 		}
 
@@ -144,6 +146,11 @@ public class MainActivity extends ActionBarActivity {
 
 	private void onSettingsPressed(){
 
+	}
+
+	private void onDeletePressed(){
+		TrainingDetailedView training = (TrainingDetailedView)fragment;
+		training.deleteActiveTraining();
 	}
 
 	private void hideKeyboard() {
@@ -262,16 +269,16 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void showTrainingDetails(int id){
-		TrainingDetailedView trainingDetailedView = new TrainingDetailedView();
+		fragment = new TrainingDetailedView();
 
 		Bundle bundle = new Bundle();
 		bundle.putInt("id", id);
 
-		trainingDetailedView.setArguments(bundle);
+		fragment.setArguments(bundle);
 
 		getFragmentManager().beginTransaction()
-				.replace(R.id.container, trainingDetailedView)
-				.addToBackStack("List")
+				.replace(R.id.container, fragment)
+				.addToBackStack("DetailedTraining")
 				.commit();
 	}
 }

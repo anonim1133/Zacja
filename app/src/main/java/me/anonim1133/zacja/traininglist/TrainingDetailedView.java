@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import java.sql.SQLException;
 
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 import me.anonim1133.zacja.db.DataBaseHelper;
 
@@ -43,7 +46,15 @@ public class TrainingDetailedView extends Fragment {
 
 		showTraining(training_id);
 
+		setHasOptionsMenu(true);
+
 		super.onStart();
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.training_detailed_view, menu);
 	}
 
 	public void showTraining(int id){
@@ -85,4 +96,9 @@ public class TrainingDetailedView extends Fragment {
 		tv_downward.setText(training.getString(training.getColumnIndexOrThrow("altitude_downward")));
 	}
 
+	public void deleteActiveTraining(){
+		db.training.delete(this.training_id);
+		MainActivity a = (MainActivity)getActivity();
+		a.showList();
+	}
 }

@@ -105,4 +105,11 @@ public class DBTraining {
 
 		return cursor;
 	}
+
+	public boolean delete(int id){
+		if(db.delete(TABLE_NAME,"id=?", new String[]{String.valueOf(id)}) == 0)
+			return false;
+		else
+			return true;
+	}
 }
