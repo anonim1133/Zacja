@@ -18,7 +18,7 @@
 			android:layout_width="128dp"
 			android:layout_height="128dp"
 			android:id="@+id/btn_stats"
-			android:background="@drawable/ic_launcher"/>
+			android:background="@drawable/logo_hires"/>
 
 		<LinearLayout
 			android:orientation="horizontal"
