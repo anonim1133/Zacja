@@ -279,7 +279,6 @@ public class MainActivity extends ActionBarActivity {
 
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
-				.addToBackStack("DetailedTraining")
 				.commit();
 	}
 

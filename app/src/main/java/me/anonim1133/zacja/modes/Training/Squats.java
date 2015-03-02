@@ -31,7 +31,6 @@ public class Squats extends Fragment {
 	long time_succession = 0;
 	int moves_succession = 0;
 
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
@@ -130,6 +129,14 @@ public class Squats extends Fragment {
 				db.addTraining(time, "Squats", getTimeMs(), 0, moves, 0, 0, 0, tempo, succession, 0, 0, 0, 0);
 			}
 		}
+
+		active = false;
+		moves = 0;
+		succession = 0;
+		time_succession = 0;
+		moves_succession = 0;
+		updateUI();
+
 	}
 
 	public void onBtnNext() {

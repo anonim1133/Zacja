@@ -323,7 +323,24 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 
 		db.addTraining(filename, activity_name, time, time_active, step_count, speed_max, avg_speed.get(), tempo_min, avg_tempo.get(), total_distance, (int)altitude_min, (int)altitude_max, (int)upward, (int)downward);
 
+		time = 0;
+		time_active = 0;
+		total_distance = 0;
+		speed = 0;
 
+		speed_max = 0;
+		speed_avg = 0;
+		tempo = 0;
+		tempo_avg = 0;
+		tempo_min = 50.0f;
+
+		altitude = 0;
+		altitude_min = 10000;
+		altitude_diff = 0;
+		altitude_max = -1000;
+		upward = 0;
+		downward = 0;
+		step_count = 0;
 
 		locationClient.removeLocationUpdates(this);
 	}

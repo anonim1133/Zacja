@@ -94,6 +94,11 @@ public class Running extends Fragment{
 		chrono = (Chronometer) rootView.findViewById(R.id.chronometer);
 		chrono.stop();
 
+		active = false;
+		active_time = 0;
+
+		updateUI();
+
 		rootView.findViewById(R.id.btn_start).setVisibility(View.VISIBLE);
 		rootView.findViewById(R.id.btn_stop).setVisibility(View.GONE);
 	}

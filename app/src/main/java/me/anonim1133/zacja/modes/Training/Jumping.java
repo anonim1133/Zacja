@@ -128,6 +128,15 @@ public class Jumping extends Fragment {
 				db.addTraining(time, "Jumping", getTimeMs(), 0, moves, 0, 0, 0, tempo, succession, 0, 0, 0, 0);
 			}
 		}
+
+		active = false;
+		moves = 0;
+		succession = 0;
+		time_succession = 0;
+		moves_succession = 0;
+
+		updateUI();
+
 	}
 
 	public void onBtnNext() {
