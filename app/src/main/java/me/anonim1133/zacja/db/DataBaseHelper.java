@@ -17,13 +17,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	private SQLiteDatabase db;
 	public DBTraining training;
 
+	Context context;
+
 	public DataBaseHelper(Context context) throws SQLException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
 		Log.d(TAG, "konstruktor");
 		this.open();
 
-		training = new DBTraining(this.db);
+		this.context = context;
+
+		training = new DBTraining(this.db, context);
 	}
 
 	@Override

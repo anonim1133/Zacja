@@ -27,10 +27,13 @@ import me.anonim1133.zacja.modes.Training.Walking;
 import me.anonim1133.zacja.modes.Work.Work;
 import me.anonim1133.zacja.traininglist.TrainingDetailedView;
 import me.anonim1133.zacja.traininglist.TrainingList;
+import me.anonim1133.zacja.utils.Api;
+import me.anonim1133.zacja.utils.Score;
 
 public class MainActivity extends ActionBarActivity {
 
 	Fragment fragment;
+	Fragment score_fragment;
 
 	String apikey;
 
@@ -135,8 +138,6 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void onListPressed(){
-		setTitle("Lista");
-
 		showList();
 	}
 
@@ -280,5 +281,23 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("DetailedTraining")
 				.commit();
+	}
+
+	public void showScore(int score){
+		score_fragment = new Score();
+
+		Bundle bundle = new Bundle();
+		bundle.putInt("score", score);
+
+		score_fragment.setArguments(bundle);
+
+		getFragmentManager().beginTransaction()
+				.add(R.id.container, score_fragment)
+				.commit();
+	}
+
+	public void removeScore(){
+		getFragmentManager().beginTransaction().remove(score_fragment).commit();
+		Log.d("Score", "Animation remove");
 	}
 }

@@ -1,10 +1,12 @@
 package me.anonim1133.zacja.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.utils.ScoreCalculator;
 
 public class DBTraining {
@@ -13,8 +15,11 @@ public class DBTraining {
 
 	private SQLiteDatabase db;
 
-	public DBTraining(SQLiteDatabase database){
+	Context context;
+
+	public DBTraining(SQLiteDatabase database, Context context){
 		this.db = database;
+		this.context = context;
 	}
 
 	public boolean add(String gpx, String training_type, long time, long time_active, int moves, float speed_max, float speed_avg, float tempo_min, float tempo_avg, float distance, int altitude_min, int altitude_max, int altitude_upward, int altitude_downward){
@@ -25,6 +30,9 @@ public class DBTraining {
 		scoring.setAverage(Math.round(speed_avg));
 		scoring.setDistance(Math.round(distance));
 		scoring.setMoves(moves);
+
+		MainActivity a = (MainActivity)context;
+		a.showScore(scoring.getScore());
 
 		values.put("gpx", gpx);
 		values.put("score", scoring.getScore());
@@ -60,6 +68,9 @@ public class DBTraining {
 		scoring.setAltitude(altitude_upward);
 		scoring.setAverage(Math.round(speed_avg));
 		scoring.setDistance(Math.round(distance));
+
+		MainActivity a = (MainActivity)context;
+		a.showScore(scoring.getScore());
 
 		values.put("gpx", gpx);
 		values.put("score", scoring.getScore());
