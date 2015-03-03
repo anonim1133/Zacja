@@ -80,7 +80,7 @@ public class TrainingDetailedView extends Fragment {
 		switch (training.getString(training.getColumnIndexOrThrow("training_type"))){
 			case "Biking": icon.setImageResource(R.drawable.biking); break;
 			case "Running": icon.setImageResource(R.drawable.running); break;
-			case "Walking": icon.setImageResource(R.drawable.running); break;
+			case "Walking": icon.setImageResource(R.drawable.walking); break;
 			case "Squats": icon.setImageResource(R.drawable.squats); break;
 			case "Jumping": icon.setImageResource(R.drawable.jumping); break;
 			default: icon.setImageResource(R.drawable.ic_launcher); break;
