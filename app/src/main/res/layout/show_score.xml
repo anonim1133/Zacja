@@ -22,7 +22,7 @@
 			android:layout_centerVertical="true"
 			android:layout_centerHorizontal="true"
 			android:textStyle="bold"
-			android:textColor="@color/jasny"
+			android:textColor="@color/light"
 			android:textIsSelectable="false"
 			android:textSize="64dp"/>
 
@@ -36,7 +36,7 @@
 			android:layout_toRightOf="@+id/tv_score"
 			android:layout_toEndOf="@+id/tv_score"
 			android:paddingLeft="8dp"
-			android:textColor="@color/jasny"/>
+			android:textColor="@color/light"/>
 
 	</LinearLayout>
 </RelativeLayout>

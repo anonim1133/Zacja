@@ -36,5 +36,10 @@
 	<string name="metric_100_unit">m</string>
 	<string name="delete_training_action">Usuń trening</string>
 	<string name="score">punktów!</string>
+	<string name="scanning_has_already_started">Skanowanie już trwa</string>
+	<string name="one_scan_once_10s">Skanowanie można wykonać raz na 10s</string>
+	<string name="conquer_error">Błąd w podboju!</string>
+	<string name="conquer_too_far_from_start">Za bardzo oddaliłeś się od miejsca w którym zacząłeś skanowanie</string>
+	<string name="already_conquered">Już podbiłeś to miejsce</string>
 
 </resources>

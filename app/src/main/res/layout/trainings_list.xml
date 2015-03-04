@@ -6,7 +6,8 @@
              android:layout_height="match_parent"
              tools:context=".MainActivity"
              tools:ignore="MergeRootFrame"
-             android:background="#FFFFFF">
+             android:background="#FFFFFF"
+             android:paddingTop="16dp">
 
 	<ListView
 		android:layout_width="fill_parent"

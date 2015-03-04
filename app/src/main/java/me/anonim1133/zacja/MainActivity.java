@@ -300,4 +300,9 @@ public class MainActivity extends ActionBarActivity {
 		getFragmentManager().beginTransaction().remove(score_fragment).commit();
 		Log.d("Score", "Animation remove");
 	}
+
+	public void onScan(View view) {
+		MapsActivity a = (MapsActivity)fragment;
+		a.onScan();
+	}
 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<item name="ciemny" type="color">#86D3DB</item>
-	<item name="jasny" type="color">#94e9f2</item>
+	<item name="dark" type="color">#86D3DB</item>
+	<item name="light" type="color">#94e9f2</item>
+	<item name="light_a" type="color">#5594e9f2</item>
 
 	<integer-array name="androidcolors">
-		<item>@color/ciemny</item>
-		<item>@color/jasny</item>
+		<item>@color/dark</item>
+		<item>@color/light</item>
 
 	</integer-array>
 
