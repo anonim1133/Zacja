@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -26,13 +27,14 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 import me.anonim1133.zacja.db.DataBaseHelper;
 
 public class MapsActivity extends Fragment {
 
 
-	View rootView;
+	static View rootView;
 
 	private static String TAG = "CTF";
 
@@ -50,7 +52,8 @@ public class MapsActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	    rootView = inflater.inflate(R.layout.ctf_main, container, false);
+	    if( rootView == null )
+	        rootView = inflater.inflate(R.layout.ctf_main, container, false);
 
 	    Log.d(MapsActivity.TAG, "onCreate");
 
@@ -89,13 +92,15 @@ public class MapsActivity extends Fragment {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) ((FragmentActivity)getActivity())
-		            .getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+			mMap = ((SupportMapFragment) ((FragmentActivity)getActivity())
+	            .getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
         }
 
-	    mMap.setMyLocationEnabled(true);
-	    mMap.getUiSettings().setZoomControlsEnabled(false);
-	    mMap.getUiSettings().setMyLocationButtonEnabled(true);
+	    if (mMap != null) {
+		    mMap.setMyLocationEnabled(true);
+		    mMap.getUiSettings().setZoomControlsEnabled(false);
+		    mMap.getUiSettings().setMyLocationButtonEnabled(true);
+	    }
 
     }
 

@@ -129,7 +129,9 @@ public class MainActivity extends ActionBarActivity {
 		if (getFragmentManager().getBackStackEntryCount() > 0) {
 			getFragmentManager().popBackStack();
 		} else {
-			super.onBackPressed();
+			finish();
+			System.exit(0);
+			//super.onBackPressed();
 		}
 	}
 
