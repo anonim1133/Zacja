@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import me.anonim1133.zacja.auth.ModeChoice;
@@ -36,6 +37,8 @@ public class MainActivity extends ActionBarActivity {
 	Fragment score_fragment;
 
 	String apikey;
+
+	boolean signed_in = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,11 @@ public class MainActivity extends ActionBarActivity {
 		apikey = sharedPref.getString("apikey", "false");
 
 		Log.d("MAIN", apikey);
-		if(apikey.matches("false")){
-			//signin
-			showSignIn();
-		}else{
+		if(!apikey.matches("false")){
 			//check key validity
 			Log.d("Main", "checking key validity");
 
+			//try to login
 			Thread thread = new Thread(new Runnable(){
 				@Override
 				public void run() {
@@ -77,8 +78,14 @@ public class MainActivity extends ActionBarActivity {
 						api.addField("key", apikey);
 
 						String valid = api.get("LoginCheck");
-						if( valid == "false" ) showSignIn();
-						else showMainScreen();
+						if( !valid.equals("false") ){
+							showMainScreen();
+							signed_in = true;
+							Log.d("Main", "Signed in");
+						}else{
+							Log.d("Main", "Valid: '" + valid + "'");
+							showMainScreen();
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 						Toast.makeText(getApplicationContext(), getString(R.string.err_network), Toast.LENGTH_SHORT).show();
@@ -87,6 +94,8 @@ public class MainActivity extends ActionBarActivity {
 			});
 
 			thread.start();
+		}else{
+			showMainScreen();
 		}
 	}
 
@@ -94,6 +103,10 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu items for use in the action bar
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
+
+		if(!isSignedIn())
+			getMenuInflater().inflate(R.menu.unsigned, menu);
+
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -133,6 +146,15 @@ public class MainActivity extends ActionBarActivity {
 			System.exit(0);
 			//super.onBackPressed();
 		}
+	}
+
+	public boolean isSignedIn(){
+		return signed_in;
+	}
+
+	private void showUnsignedMenu(Menu m){
+		Log.d("Main", "unsigned menu");
+		getMenuInflater().inflate(R.menu.unsigned, m);
 	}
 
 	private void onHomePressed(){

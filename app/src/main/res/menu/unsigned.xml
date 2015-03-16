@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:zacja="http://schemas.android.com/apk/res-auto">
+	<item android:id="@+id/action_signin"
+	      android:title="@string/signin"
+	      android:icon="@drawable/signin"
+	      zacja:showAsAction="ifRoom" />
+	<item android:id="@+id/action_signup"
+	      android:title="@string/signup"
+	      android:icon="@drawable/signup"
+	      zacja:showAsAction="ifRoom" />
+</menu>
