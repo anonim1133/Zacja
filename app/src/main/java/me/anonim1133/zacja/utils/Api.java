@@ -9,6 +9,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -28,13 +31,24 @@ public class Api {
 
 	private List<NameValuePair> fields;
 
+	private static final long CONN_MGR_TIMEOUT = 10000;
+	private static final int CONN_TIMEOUT = 50000;
+	private static final int SO_TIMEOUT = 50000;
+
 	public Api(String ip, String port){
 		//Set ip, port
 		this.ip = ip;
 		this.port = port;
 
 		//Initialize HTTPClient
-		httpclient = new DefaultHttpClient();
+		HttpParams httpParameters = new BasicHttpParams();
+		int timeoutConnection = 1024; //waiting for connection
+		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+		int timeoutSocket = 2048; //waiting for data
+		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
+		httpclient = new DefaultHttpClient(httpParameters);
+
 
 		fields = new ArrayList<>();
 		api_key = "";
