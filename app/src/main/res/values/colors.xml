@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<item name="darker" type="color">#35A4B1</item>
 	<item name="dark" type="color">#86D3DB</item>
 	<item name="light" type="color">#94e9f2</item>
 	<item name="light_a" type="color">#5594e9f2</item>

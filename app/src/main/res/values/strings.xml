@@ -41,5 +41,6 @@
 	<string name="conquer_error">Błąd w podboju!</string>
 	<string name="conquer_too_far_from_start">Za bardzo oddaliłeś się od miejsca w którym zacząłeś skanowanie</string>
 	<string name="already_conquered">Już podbiłeś to miejsce</string>
+	<string name="time_for_training">Czas do następnej sesji</string>
 
 </resources>
