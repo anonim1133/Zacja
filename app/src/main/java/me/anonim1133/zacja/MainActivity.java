@@ -87,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
 							showMainScreen();
 						}
 					} catch (Exception e) {
+						showMainScreen();
 						e.printStackTrace();
 						Toast.makeText(getApplicationContext(), getString(R.string.err_network), Toast.LENGTH_SHORT).show();
 					}
