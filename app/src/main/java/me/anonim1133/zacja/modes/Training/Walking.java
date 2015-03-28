@@ -77,7 +77,8 @@ public class Walking extends Fragment{
 				updateUI();
 
 				if(goal > 0 && steps >= goal){
-					onBtnStop();
+
+					finishWorkTraining();
 
 					MainActivity a = (MainActivity)getActivity();
 					if(++work < 8){
@@ -105,6 +106,29 @@ public class Walking extends Fragment{
 
 		if(goal > 0)
 			onBtnStart();
+	}
+
+	public void finishWorkTraining(){
+		if (gps != null) {
+			gps.finishWorkTraining();
+			gps.setStepCounting(false);
+		}
+
+		if(pedo != null)
+			pedo.unregisterSensor();
+
+		chrono = (Chronometer) rootView.findViewById(R.id.chronometer);
+		chrono.stop();
+
+		active = false;
+		active_time = 0;
+		steps = 0;
+
+		updateUI();
+
+
+		rootView.findViewById(R.id.btn_start).setVisibility(View.VISIBLE);
+		rootView.findViewById(R.id.btn_stop).setVisibility(View.GONE);
 	}
 
 	public void onBtnStart() {

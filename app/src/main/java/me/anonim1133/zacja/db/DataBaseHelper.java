@@ -64,6 +64,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		return training.add(gpx, training_type, time, time_active, moves, speed_max, speed_avg, tempo_min, tempo_avg, distance, altitude_min, altitude_max, altitude_upward, altitude_downward);
 	}
 
+	public boolean addTrainingWork(String gpx, String training_type, long time, long time_active, int moves, float speed_max, float speed_avg, float tempo_min, float tempo_avg, float distance, int altitude_min, int altitude_max, int altitude_upward, int altitude_downward){
+		return training.workAdd(gpx, training_type, time, time_active, moves, speed_max, speed_avg, tempo_min, tempo_avg, distance, altitude_min, altitude_max, altitude_upward, altitude_downward);
+	}
+
 	public boolean addWifi(String ssid, String bssid, int signal, int security, double longitude, double latitude){
 		return wifi.add(ssid, bssid, signal, security, longitude, latitude);
 	}
