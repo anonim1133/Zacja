@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 import me.anonim1133.zacja.sensors.GpsHelper;
 import me.anonim1133.zacja.sensors.PedometerHelper;
@@ -25,6 +27,9 @@ public class Walking extends Fragment{
 	boolean active = false;
 	int active_time = 0;
 	int steps = 0;
+
+	int goal = 0;
+	int work = 0;
 
 	@Override
 	public void onAttach(Activity activity){
@@ -70,6 +75,17 @@ public class Walking extends Fragment{
 				steps = pedo.getStepCount();
 
 				updateUI();
+
+				if(goal > 0 && steps >= goal){
+					onBtnStop();
+
+					MainActivity a = (MainActivity)getActivity();
+					if(++work < 8){
+						a.showWork(work);
+					}else{
+						a.showMainScreen();
+					}
+				}
 			}
 			}
 		});
@@ -80,6 +96,15 @@ public class Walking extends Fragment{
 	@Override
 	public void onStart() {
 		super.onStart();
+
+		Bundle b = getArguments();
+		if(b != null) {
+			goal = b.getInt("goal");
+			work = b.getInt("succession");
+		}
+
+		if(goal > 0)
+			onBtnStart();
 	}
 
 	public void onBtnStart() {

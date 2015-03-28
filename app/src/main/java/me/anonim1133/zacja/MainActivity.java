@@ -236,6 +236,20 @@ public class MainActivity extends ActionBarActivity {
 				.commit();
 	}
 
+	public void showWork(int succession){
+		fragment = new Work();
+
+		Bundle bundle = new Bundle();
+		bundle.putInt("succession", succession);
+
+		fragment.setArguments(bundle);
+
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Work")
+				.commit();
+	}
+
 
 	/* Selecting proper fragments for activities */
 
@@ -264,6 +278,21 @@ public class MainActivity extends ActionBarActivity {
 
 	public void selectWalking(View view){
 		fragment = new Walking();
+		getFragmentManager().beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack("Walking")
+				.commit();
+	}
+
+	public void selectWalking(int goal, int succession){
+		fragment = new Walking();
+
+		Bundle bundle = new Bundle();
+		bundle.putInt("goal", goal);
+		bundle.putInt("succession", succession);
+
+		fragment.setArguments(bundle);
+
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.addToBackStack("Walking")

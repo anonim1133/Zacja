@@ -12,6 +12,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
 
 public class Work extends Fragment {
@@ -19,6 +20,8 @@ public class Work extends Fragment {
 
 	ProgressBar pb;
 	TextView timer;
+
+	int succession = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class Work extends Fragment {
 
 		pb.setMax(60);
 		pb.setProgress(0);
+
+		Bundle b = getArguments();
+		if(b != null)
+			succession = b.getInt("succession");
 
 		return rootView;
 	}
@@ -49,15 +56,15 @@ public class Work extends Fragment {
 				long seconds = leftTimeInMilliseconds / 1000;
 				int barVal= pb.getMax() - (int)seconds/60;
 
-				Log.d("VAL", String.valueOf(barVal));
-
 				pb.setProgress(barVal);
 				timer.setText(String.format("%02d", seconds/60) + ":" + String.format("%02d", seconds%60));
 
 			}
 			@Override
 			public void onFinish() {
+				MainActivity a = (MainActivity)getActivity();
 
+				a.selectWalking(256, succession);//Starts "walking" and it counts up to 100 steps, then ends.
 			}
 		}.start();
 
