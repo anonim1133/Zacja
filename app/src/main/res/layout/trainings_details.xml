@@ -45,6 +45,19 @@
 				android:id="@+id/tv_label_scores"/>
 		</LinearLayout>
 
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:id="@+id/tv_data"/>
+		</LinearLayout>
+
 		<TableLayout
 			android:layout_width="wrap_content"
 			android:layout_height="fill_parent"
@@ -53,7 +66,8 @@
 
 			<TableRow
 				android:layout_width="fill_parent"
-				android:layout_height="fill_parent">
+				android:layout_height="fill_parent"
+				android:visibility="visible">
 
 				<TextView
 					android:layout_width="wrap_content"
@@ -209,7 +223,8 @@
 
 			<TableRow
 				android:layout_width="fill_parent"
-				android:layout_height="fill_parent">
+				android:layout_height="fill_parent"
+				android:visibility="gone">
 
 				<TextView
 					android:layout_width="wrap_content"

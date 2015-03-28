@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import me.anonim1133.zacja.MainActivity;
 import me.anonim1133.zacja.R;
@@ -44,7 +47,11 @@ public class TrainingDetailedView extends Fragment {
 			e.printStackTrace();
 		}
 
-		showTraining(training_id);
+		try {
+			showTraining(training_id);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		setHasOptionsMenu(true);
 
@@ -57,7 +64,7 @@ public class TrainingDetailedView extends Fragment {
 		inflater.inflate(R.menu.training_detailed_view, menu);
 	}
 
-	public void showTraining(int id){
+	public void showTraining(int id) throws ParseException {
 		Log.d("Training", "ShowTraining");
 
 		//Get training
@@ -68,6 +75,7 @@ public class TrainingDetailedView extends Fragment {
 		ImageView icon = (ImageView)rootView.findViewById(R.id.training_icon);
 		TextView tv_score = (TextView)rootView.findViewById(R.id.tv_score);
 		TextView tv_time = (TextView)rootView.findViewById(R.id.tv_time);
+		TextView tv_data = (TextView)rootView.findViewById(R.id.tv_data);
 		TextView tv_time_active = (TextView)rootView.findViewById(R.id.tv_time_active);
 		TextView tv_tempo = (TextView)rootView.findViewById(R.id.tv_tempo);
 		TextView tv_distance = (TextView)rootView.findViewById(R.id.tv_distance);
@@ -85,6 +93,16 @@ public class TrainingDetailedView extends Fragment {
 			case "Jumping": icon.setImageResource(R.drawable.jumping); break;
 			default: icon.setImageResource(R.drawable.ic_launcher); break;
 		}
+
+		String dateStr = training.getString(training.getColumnIndexOrThrow("gpx")).replace(".gpx", "");
+
+		SimpleDateFormat curFormater = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
+		Date dateObj = curFormater.parse(dateStr);
+		SimpleDateFormat postFormater = new SimpleDateFormat("dd-MM-yy HH:mm");
+
+		String newDateStr = postFormater.format(dateObj);
+
+		tv_data.setText(newDateStr);
 
 		tv_score.setText(training.getString(training.getColumnIndexOrThrow("score")));
 		tv_time.setText(training.getString(training.getColumnIndexOrThrow("time")));
