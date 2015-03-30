@@ -129,7 +129,14 @@ public class MainActivity extends ActionBarActivity {
 					onSyncPressed();
 				return true;
 			case R.id.action_settings:
-					onSettingsPressed();
+				onSettingsPressed();
+				return true;
+			case R.id.action_signin:
+				showSignIn();
+				return true;
+			case R.id.action_signup:
+				showSignUp();
+				return true;
 			case R.id.action_delete:
 				onDeletePressed();
 				return true;
@@ -194,6 +201,7 @@ public class MainActivity extends ActionBarActivity {
 		fragment = new SignIn();
 		getFragmentManager().beginTransaction()
 							.replace(R.id.container, fragment)
+							.addToBackStack("SignIn")
 							.commit();
 	}
 
@@ -201,6 +209,7 @@ public class MainActivity extends ActionBarActivity {
 		fragment = new SignUp();
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
+				.addToBackStack("SignUp")
 				.commit();
 	}
 
