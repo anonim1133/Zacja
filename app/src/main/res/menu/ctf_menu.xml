@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:zacja="http://schemas.android.com/apk/res-auto">
+	<item android:id="@+id/action_sync_ctf"
+	      android:icon="@drawable/sync"
+	      android:title="@string/action_sync"
+	      zacja:showAsAction="ifRoom" />
+</menu>

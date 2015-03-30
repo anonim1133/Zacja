@@ -4,10 +4,11 @@
 	      android:icon="@drawable/list"
 	      android:title="@string/action_list"
 	      zacja:showAsAction="ifRoom" />
-	<item android:id="@+id/action_sync"
+<!--	<item android:id="@+id/action_sync"
 	      android:icon="@drawable/sync"
 	      android:title="@string/action_sync"
 	      zacja:showAsAction="ifRoom" />
+-->
 	<item android:id="@+id/action_settings"
 	      android:title="@string/action_settings"
 	      android:icon="@drawable/settings"

@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	private SQLiteDatabase db;
 	public DBTraining training;
-	private DBWifi wifi;
+	public DBWifi wifi;
 	private DBConquered conquered;
 
 	Context context;
@@ -72,9 +72,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		return wifi.add(ssid, bssid, signal, security, longitude, latitude);
 	}
 
-	public void sendWifi() {
-		wifi.send();
-	}
+	//public void sendWifi() {		wifi.send();	}
 
 	public  boolean addConquer(int points, long date, double longitude, double latitude){
 		return conquered.add(points, date, longitude, latitude);

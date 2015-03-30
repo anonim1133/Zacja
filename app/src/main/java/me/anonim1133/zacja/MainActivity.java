@@ -26,10 +26,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.sql.SQLException;
+
 import me.anonim1133.zacja.auth.ModeChoice;
 import me.anonim1133.zacja.auth.SignIn;
 import me.anonim1133.zacja.auth.SignUp;
 import me.anonim1133.zacja.modes.CTF.MapsActivity;
+import me.anonim1133.zacja.modes.CTF.SyncCTF;
 import me.anonim1133.zacja.modes.Training.Biking;
 import me.anonim1133.zacja.modes.Training.Jumping;
 import me.anonim1133.zacja.modes.Training.Running;
@@ -136,9 +139,6 @@ public class MainActivity extends ActionBarActivity {
 			case R.id.action_list:
 					onListPressed();
 				return true;
-			case R.id.action_sync:
-					onSyncPressed();
-				return true;
 			case R.id.action_settings:
 				onSettingsPressed();
 				return true;
@@ -150,6 +150,9 @@ public class MainActivity extends ActionBarActivity {
 				return true;
 			case R.id.action_delete:
 				onDeletePressed();
+				return true;
+			case R.id.action_sync_ctf:
+				syncCTF();
 				return true;
 		}
 
@@ -206,7 +209,27 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
+	private void syncCTF(){
+		if(signed_in){
+			Thread thread = new Thread(new Runnable(){
+				@Override
+				public void run() {
+					try {
+						SyncCTF sync = new SyncCTF(getBaseContext(), apikey);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+			thread.start();
+		}
+
+	}
+
+	// --------
 	//Fragments
+	// --------
 
 	public void showSignIn(){
 		fragment = new SignIn();

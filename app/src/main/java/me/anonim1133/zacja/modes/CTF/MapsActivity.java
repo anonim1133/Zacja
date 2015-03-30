@@ -12,6 +12,8 @@ import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -70,6 +72,18 @@ public class MapsActivity extends Fragment {
 
 	    return rootView;
     }
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+
+		Log.d("CTF", "OnCreateMenu");
+
+		MainActivity a = (MainActivity)getActivity();
+
+		if(a.isSignedIn())
+			inflater.inflate(R.menu.ctf_menu, menu);
+	}
 
 	private  void setUpWifi(){
 		mainWifi = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
@@ -248,14 +262,13 @@ public class MapsActivity extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Connect the client.
 	    Log.d(MapsActivity.TAG, "onStart");
+	    setHasOptionsMenu(true);
     }
 
 	@Override
 	public void onStop() {
 		Log.d(MapsActivity.TAG, "onStop");
-		// If the client is connected
 
 		super.onStop();
 	}
