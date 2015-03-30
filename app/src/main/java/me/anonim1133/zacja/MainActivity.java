@@ -1,10 +1,21 @@
 package me.anonim1133.zacja;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.app.Fragment;
+import android.media.AudioManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.media.ToneGenerator;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -305,7 +316,7 @@ public class MainActivity extends ActionBarActivity {
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.addToBackStack("Walking")
-				.commit();
+				.commitAllowingStateLoss();
 	}
 
 	public void selectJumping(View view){
@@ -367,5 +378,38 @@ public class MainActivity extends ActionBarActivity {
 	public void onScan(View view) {
 		MapsActivity a = (MapsActivity)fragment;
 		a.onScan();
+	}
+
+	public void showNotification(String notification_title, String notification_text){
+		Log.d("Notification", "start");
+
+		try {
+		    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+		    r.play();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+
+		Intent intent = new Intent(this, MainActivity.class);
+		intent.setAction("android.intent.action.MAIN");
+		intent.addCategory("android.intent.category.LAUNCHER");
+
+		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+		Notification n  = new Notification.Builder(this)
+				.setContentTitle(notification_title)
+				.setContentText(notification_text)
+				.setSmallIcon(R.drawable.ic_launcher)
+				.setContentIntent(pIntent)
+				.setAutoCancel(true).build();
+
+
+		NotificationManager notificationManager =
+				(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+		notificationManager.notify(0, n);
+
+		Log.d("notification", "end");
 	}
 }

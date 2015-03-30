@@ -1,8 +1,14 @@
 package me.anonim1133.zacja.modes.Work;
 
 import android.app.Fragment;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +70,7 @@ public class Work extends Fragment {
 			public void onFinish() {
 				MainActivity a = (MainActivity)getActivity();
 
+				a.showNotification(a.getString(R.string.work_notification_title), a.getString(R.string.work_notification_text));
 				a.selectWalking(256, succession);//Starts "walking" and it counts up to 100 steps, then ends.
 			}
 		}.start();
