@@ -2,11 +2,7 @@ package me.anonim1133.zacja.modes.CTF;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.location.Location;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +51,8 @@ public class SyncCTF {
 				Log.d("SyncCTF", "Json: " + json);
 				//Log.d("SyncCTF", "Response: "+ response);
 
-				db.wifi.remove(json.getString("id"));
+				if(response.equals("success"))
+					db.wifi.remove(json.getString("id"));
 			} catch (Exception e) {
 				e.printStackTrace();
 				//Toast.makeText(c, c.getString(R.string.err_network), Toast.LENGTH_SHORT).show();
@@ -92,12 +89,12 @@ public class SyncCTF {
 
 				api.addField("conquer", json.toString());
 
-				String response = api.post("addWifi");
+				String response = api.post("addConquer");
 
 				Log.d("SyncCTF", "Json: " + json);
 
-				db.conquered.remove(String.valueOf(conquer.getInt(0)));
-				conquer.close();
+				if(response.equals("duplicate")) break;
+
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
