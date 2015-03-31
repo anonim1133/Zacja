@@ -74,7 +74,7 @@ public class DBWifi {
 	}
 
 	public int getCount(){
-		Cursor cursor = db.query(TABLE_NAME, new String[]{"id", "ssid", "bssid", "signal", "security", "longitude", "latitude"}, null, null, null, null, "id DESC");
+		Cursor cursor = db.query(TABLE_NAME, new String[]{"id"}, null, null, null, null, "id DESC");
 
 		return cursor.getCount();
 	}

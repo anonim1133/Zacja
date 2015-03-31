@@ -30,7 +30,7 @@ public class SyncCTF {
 		key = apikey;
 		db = new DataBaseHelper(c);
 
-		//syncWifi();
+		syncWifi();
 		syncConquers();
 
 		db.close();
@@ -67,5 +67,40 @@ public class SyncCTF {
 
 	public void syncConquers(){
 		Log.d("SyncCTF", "Conquers");
+
+		while (db.conquered.getCount() > 0) {
+			Log.d("SyncCTF", db.conquered.getCount() + " left");
+			try {
+				Cursor conquer = db.conquered.getLast(1);
+
+				JSONObject json = new JSONObject();
+
+				if (conquer.getCount() != 0) {
+					conquer.moveToFirst();
+
+					json.put("id", conquer.getInt(0));
+					json.put("score", conquer.getInt(1));
+					json.put("date", conquer.getString(2));
+					json.put("lon", conquer.getFloat(3));
+					json.put("lat", conquer.getFloat(4));
+
+					conquer.close();
+				}
+
+				Api api = new Api( c.getString(R.string.server_ip), c.getString(R.string.server_port) );
+				api.addField("key", key);
+
+				api.addField("conquer", json.toString());
+
+				String response = api.post("addWifi");
+
+				Log.d("SyncCTF", "Json: " + json);
+
+				db.conquered.remove(String.valueOf(conquer.getInt(0)));
+				conquer.close();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -38,4 +38,16 @@ public class DBConquered {
 
 		return cursor;
 	}
+
+	public int getCount(){
+		Cursor cursor = db.query(TABLE_NAME, new String[]{"id"}, null, null, null, null, "id DESC");
+
+		return cursor.getCount();
+	}
+
+
+	public void remove(String id){
+		db.delete(TABLE_NAME, "id = ?", new String[]{String.valueOf(id)});
+	}
+
 }

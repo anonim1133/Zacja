@@ -17,7 +17,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	private SQLiteDatabase db;
 	public DBTraining training;
 	public DBWifi wifi;
-	private DBConquered conquered;
+	public DBConquered conquered;
 
 	Context context;
 
