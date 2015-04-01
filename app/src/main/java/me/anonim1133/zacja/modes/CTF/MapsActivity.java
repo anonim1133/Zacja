@@ -99,7 +99,7 @@ public class MapsActivity extends Fragment {
 	}
 
 	private void stopScanWifi(){
-		//ToDo:
+
 	}
 
     private void setUpMapIfNeeded() {

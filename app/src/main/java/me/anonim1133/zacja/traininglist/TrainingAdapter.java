@@ -65,7 +65,6 @@ public class TrainingAdapter extends CursorAdapter {
 			txt_stats = cursor.getString(cursor.getColumnIndexOrThrow("distance"));
 		}
 
-		//ToDo: Zliczać punkty
 		String txt_points = cursor.getString(cursor.getColumnIndexOrThrow("score")) + context.getString(R.string.scores);
 
 		// Populate fields with extracted properties

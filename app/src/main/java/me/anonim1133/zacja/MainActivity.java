@@ -47,6 +47,9 @@ import me.anonim1133.zacja.utils.Score;
 
 public class MainActivity extends ActionBarActivity {
 
+//Todo: Actionbar title -> lvl and progress if signed in, "zacja" otherwise
+
+
 	Fragment fragment;
 	Fragment score_fragment;
 
