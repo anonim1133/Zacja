@@ -159,6 +159,14 @@ public class DBTraining {
 		return cursor;
 	}
 
+	public int getCount() {
+		Cursor cursor;
+
+		cursor = db.query(TABLE_NAME , new String[] {"rowid _id,*"}, null, null, null, null, null);
+
+		return cursor.getCount();
+	}
+
 	public boolean delete(int id){
 		if(db.delete(TABLE_NAME,"id=?", new String[]{String.valueOf(id)}) == 0)
 			return false;

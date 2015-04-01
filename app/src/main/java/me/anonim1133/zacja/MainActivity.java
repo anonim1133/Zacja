@@ -8,14 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.app.Fragment;
-import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
-import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -23,9 +19,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import me.anonim1133.zacja.auth.ModeChoice;
@@ -38,6 +37,7 @@ import me.anonim1133.zacja.modes.Training.Jumping;
 import me.anonim1133.zacja.modes.Training.Running;
 import me.anonim1133.zacja.modes.Training.SelectActivity;
 import me.anonim1133.zacja.modes.Training.Squats;
+import me.anonim1133.zacja.modes.Training.SyncTraining;
 import me.anonim1133.zacja.modes.Training.Walking;
 import me.anonim1133.zacja.modes.Work.Work;
 import me.anonim1133.zacja.traininglist.TrainingDetailedView;
@@ -137,7 +137,7 @@ public class MainActivity extends ActionBarActivity {
 				onHomePressed();
 				return true;
 			case R.id.action_list:
-					onListPressed();
+				onListPressed();
 				return true;
 			case R.id.action_settings:
 				onSettingsPressed();
@@ -153,6 +153,9 @@ public class MainActivity extends ActionBarActivity {
 				return true;
 			case R.id.action_sync_ctf:
 				syncCTF();
+				return true;
+			case R.id.action_sync_training:
+				syncTraining();
 				return true;
 		}
 
@@ -174,21 +177,12 @@ public class MainActivity extends ActionBarActivity {
 		return signed_in;
 	}
 
-	private void showUnsignedMenu(Menu m){
-		Log.d("Main", "unsigned menu");
-		getMenuInflater().inflate(R.menu.unsigned, m);
-	}
-
 	private void onHomePressed(){
 
 	}
 
 	private void onListPressed(){
 		showList();
-	}
-
-	private void onSyncPressed(){
-
 	}
 
 	private void onSettingsPressed(){
@@ -217,6 +211,39 @@ public class MainActivity extends ActionBarActivity {
 					try {
 						SyncCTF sync = new SyncCTF(getBaseContext(), apikey);
 					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+			thread.start();
+		}
+
+	}
+
+	private void syncTraining(){
+		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		final int last_id = sharedPref.getInt("last_sync_training_id", 0);
+		if(signed_in){
+			Thread thread = new Thread(new Runnable(){
+				@Override
+				public void run() {
+					try {
+						SyncTraining sync = new SyncTraining(getBaseContext(), apikey);
+
+						int new_last_id = sync.go(last_id);
+
+						SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+						SharedPreferences.Editor editor = sharedPref.edit();
+						editor.putInt("last_sync_training_id", new_last_id);
+						editor.commit();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
