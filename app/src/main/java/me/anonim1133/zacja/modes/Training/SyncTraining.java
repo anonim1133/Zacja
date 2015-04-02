@@ -23,7 +23,7 @@ public class SyncTraining {
 	String key;
 
 	public SyncTraining(Context c, String apikey){
-		Log.d("SyncCTF", "Syncing...");
+		Log.d("SyncTraining", "Syncing...");
 
 		this.c = c;
 		key = apikey;
@@ -41,7 +41,7 @@ public class SyncTraining {
 
 			FileInputStream gpx_file;
 
-			while(last_training_id > last_id){
+			while(last_training_id >= last_id){
 
 				training = db.training.getByID(last_id);
 				if(training.getCount() > 0){//Check if training with this id exists
@@ -73,7 +73,7 @@ public class SyncTraining {
 					api.addField("training", json.toString());
 
 					String response = api.post("addTraining");
-
+					Log.d("SyncTraining", "Response: " + response);
 					//if(response.equals("success"))
 					//	c.deleteFile(training.getString(training.getColumnIndex("gpx")));
 
