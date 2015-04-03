@@ -50,4 +50,12 @@ public class DBConquered {
 		db.delete(TABLE_NAME, "id = ?", new String[]{String.valueOf(id)});
 	}
 
+	public Cursor getByID(int id) {
+		Cursor cursor;
+
+		cursor = db.query(TABLE_NAME , new String[] {"rowid _id,*"}, "id=?", new String[]{ String.valueOf(id) }, null, null, null, String.valueOf(1));
+
+		return cursor;
+	}
+
 }

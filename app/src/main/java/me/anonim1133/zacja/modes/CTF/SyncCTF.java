@@ -48,10 +48,10 @@ public class SyncCTF {
 
 				String response = api.post("addWifi");
 
-				Log.d("SyncCTF", "Json: " + json);
-				//Log.d("SyncCTF", "Response: "+ response);
+				//Log.d("SyncCTF", "Json: " + json);
+				Log.d("SyncCTF", "Response: "+ response);
 
-				if(response.equals("success"))
+				if(response.equals("Success"))
 					db.wifi.remove(json.getString("id"));
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -65,35 +65,44 @@ public class SyncCTF {
 	public void syncConquers(){
 		Log.d("SyncCTF", "Conquers");
 
-		while (db.conquered.getCount() > 0) {
-			Log.d("SyncCTF", db.conquered.getCount() + " left");
+
+		Cursor co = db.conquered.getLast(1);
+		co.moveToFirst();
+
+		Integer conquer_id = co.getInt(0);
+
+		while (db.conquered.getCount() > 0 && conquer_id > 0) {
+			Log.d("SyncCTF", "ID of conquer: " + conquer_id);
 			try {
-				Cursor conquer = db.conquered.getLast(1);
+				Cursor conquer = db.conquered.getByID(conquer_id--);
 
-				JSONObject json = new JSONObject();
+				if(conquer.getCount() > 0){//check if conquer with that id exists
+					JSONObject json = new JSONObject();
 
-				if (conquer.getCount() != 0) {
 					conquer.moveToFirst();
 
 					json.put("id", conquer.getInt(0));
-					json.put("score", conquer.getInt(1));
-					json.put("date", conquer.getString(2));
-					json.put("lon", conquer.getFloat(3));
-					json.put("lat", conquer.getFloat(4));
+					json.put("score", conquer.getInt(conquer.getColumnIndex("score")));
+					json.put("date", conquer.getString(conquer.getColumnIndex("date")));
+					json.put("lon", conquer.getFloat(conquer.getColumnIndex("longitude")));
+					json.put("lat", conquer.getFloat(conquer.getColumnIndex("latitude")));
 
 					conquer.close();
+
+
+					Api api = new Api( c.getString(R.string.server_ip), c.getString(R.string.server_port) );
+					api.addField("key", key);
+
+					api.addField("conquer", json.toString());
+
+					String response = api.post("addConquer");
+
+					Log.d("SyncCTF", "Response: " + response);
+
+					if(response.equals("Duplicate")) break;
 				}
 
-				Api api = new Api( c.getString(R.string.server_ip), c.getString(R.string.server_port) );
-				api.addField("key", key);
 
-				api.addField("conquer", json.toString());
-
-				String response = api.post("addConquer");
-
-				Log.d("SyncCTF", "Json: " + json);
-
-				if(response.equals("duplicate")) break;
 
 			} catch (JSONException e) {
 				e.printStackTrace();
