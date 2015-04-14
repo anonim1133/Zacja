@@ -244,10 +244,6 @@ public class MainActivity extends ActionBarActivity {
 						e.printStackTrace();
 					} catch (JSONException e) {
 						e.printStackTrace();
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
 					}
 				}
 			});

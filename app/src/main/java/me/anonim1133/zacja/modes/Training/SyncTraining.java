@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -29,7 +30,7 @@ public class SyncTraining {
 		key = apikey;
 	}
 
-	public int go(int last_id) throws SQLException, JSONException, IOException {
+	public int go(int last_id) throws SQLException, JSONException{
 		db = new DataBaseHelper(c);
 
 		last_id++;
@@ -54,14 +55,20 @@ public class SyncTraining {
 						json.put(training.getColumnName(i), training.getString(i));
 					}
 
-					gpx_file = c.openFileInput(training.getString(training.getColumnIndex("gpx")));
-
 					StringBuffer gpx = new StringBuffer("");
-					byte[] buffer = new byte[1024];
+					try {
+						gpx_file = c.openFileInput(training.getString(training.getColumnIndex("gpx")));
+						if(gpx_file.available() > 0) {
+							byte[] buffer = new byte[1024];
 
-					int n;
-					while ((n = gpx_file.read(buffer)) != -1){
-						gpx.append(new String(buffer, 0, n));
+							int n;
+							while ((n = gpx_file.read(buffer)) != -1) {
+								gpx.append(new String(buffer, 0, n));
+							}
+						}
+					}catch (IOException e){
+						Log.d("SyncTraining", "No gpx file for training");
+						//e.printStackTrace();
 					}
 
 					json.put("gpx_file", gpx);
