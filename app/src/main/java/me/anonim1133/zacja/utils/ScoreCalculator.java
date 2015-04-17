@@ -37,13 +37,13 @@ public class ScoreCalculator {
 	public int getScore() {
 		switch (type){
 			case "Biking":
-				score = distance+(altitude*average);
+				score = (distance+(altitude*average))/10;
 			break;
 			case "Running":
-				score = (distance*10)+(altitude*average)+moves;
+				score = ((distance*10)+(altitude*average)+moves)/10;
 			break;
 			case "Walking":
-				score = (distance*10)+(altitude*average)+moves;
+				score = ((distance*10)+(altitude*average)+moves)/10;
 				break;
 			case "Squats":
 				score = 128+(distance*moves);
