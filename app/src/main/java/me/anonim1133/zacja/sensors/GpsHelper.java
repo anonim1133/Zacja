@@ -66,7 +66,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 	private float speed_avg = 0;
 	private float tempo = 0;
 	private float tempo_avg = 0;
-	private float tempo_min = 50.0f;
+	private float tempo_min = 100.0f;
 
 	private float altitude = 0;
 	private float altitude_min = 10000;
@@ -158,7 +158,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 			setAverageSpeed(speed);
 			setMaxSpeed(speed);
 
-			tempo(speed);
+			setTempo(speed);
 		}
 	}
 
@@ -172,7 +172,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 			speed_avg = avg_speed.add(speed);
 	}
 
-	public void tempo(float speed){
+	public void setTempo(float speed){
 		if(speed != 0){
 			 tempo = 60/speed;
 		}else {
@@ -180,7 +180,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 		}
 
 		setAverageTempo(tempo);
-		setTempoMin(tempo_min);
+		setTempoMin(tempo);
 	}
 
 	public void setTempoMin(float tempo){
@@ -191,6 +191,8 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 	public void setAverageTempo(float tempo){
 		if(tempo > 0)
 			avg_tempo.add(tempo);
+
+		tempo_avg = avg_tempo.get();
 	}
 
 	public void setDistance(float distance){
@@ -331,7 +333,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 		speed_avg = 0;
 		tempo = 0;
 		tempo_avg = 0;
-		tempo_min = 50.0f;
+		tempo_min = 100.0f;
 
 		altitude = 0;
 		altitude_min = 10000;
@@ -360,7 +362,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 		speed_avg = 0;
 		tempo = 0;
 		tempo_avg = 0;
-		tempo_min = 50.0f;
+		tempo_min = 100.0f;
 
 		altitude = 0;
 		altitude_min = 10000;
