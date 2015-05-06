@@ -104,7 +104,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 
 			//Setting altitude
 			if(location.hasAltitude() && (location.getAccuracy() <= 10.0)){
-				setAltitude((float)location.getAltitude(), location.getAltitude()-last_location.getAltitude());
+				setAltitude((float)location.getAltitude(), last_location.getAltitude());
 			}
 		}
 
@@ -199,8 +199,14 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 		total_distance += distance;
 	}
 
-	public void setAltitude(double alt, double difference){
-		float altitude_difference = (float)difference;
+	public void setAltitude(double alt, double last_alt){
+		float altitude_difference = 0;
+
+		if(last_alt == 0){
+			altitude_difference = 0;
+		}else{
+			altitude_difference = (float)(alt - last_alt);
+		}
 
 		altitude = (float)alt;
 		altitude_diff = (altitude_max - altitude_min);
