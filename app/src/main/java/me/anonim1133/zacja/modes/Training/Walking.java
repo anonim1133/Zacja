@@ -229,37 +229,37 @@ public class Walking extends Fragment{
 
 	public void updateSpeed() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_speed);
-		tv.setText(String.valueOf(gps.getSpeed()));
+		tv.setText(String.format("%.2f", gps.getSpeed()));
 	}
 
 	public void updateSpeedMax() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_speed_max);
-		tv.setText(String.valueOf(gps.getSpeed_max()));
+		tv.setText(String.format("%.2f", gps.getSpeed_max()));
 	}
 
 	public void updateSpeedAVG() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_avg_speed);
-		tv.setText(String.valueOf(gps.getSpeed_avg()));
+		tv.setText(String.format("%.2f", gps.getSpeed_avg()));
 	}
 
 	public void updateTempo() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_tempo);
-		tv.setText(String.valueOf(gps.getTempo()));
+		tv.setText(String.format("%.2f", gps.getTempo()));
 	}
 
 	public void updateTempoMin() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_tempo_min);
-		tv.setText(String.valueOf(gps.getTempo_min()));
+		tv.setText(String.format("%.2f", gps.getTempo_min()));
 	}
 
 	public void updateTempoAVG() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_avg_tempo);
-		tv.setText(String.valueOf(gps.getTempo_avg()));
+		tv.setText(String.format("%.2f", gps.getTempo_avg()));
 	}
 
 	public void updateDistance() {
 		TextView tv = (TextView) rootView.findViewById(R.id.txt_distance);
-		tv.setText(String.valueOf(gps.getTotal_distance()));
+		tv.setText(String.format("%.2f", gps.getTotal_distance()));
 	}
 
 	public void updateGoal() {
@@ -269,22 +269,21 @@ public class Walking extends Fragment{
 
 	public void updateAltitude(){
 		TextView txt_alt = (TextView) rootView.findViewById(R.id.txt_altitude);
-		txt_alt.setText(String.valueOf(gps.getAltitude()));
+		txt_alt.setText(String.format("%.2f", gps.getAltitude()));
 
 		TextView txt_min = (TextView) rootView.findViewById(R.id.txt_altitude_min);
-		txt_min.setText(String.valueOf(gps.getAltitude_min()));
+		txt_min.setText(String.format("%.2f", gps.getAltitude_min()));
 
 		TextView txt_max = (TextView) rootView.findViewById(R.id.txt_altitude_max);
-		txt_max.setText(String.valueOf(gps.getAltitude_max()));
+		txt_max.setText(String.format("%.2f", gps.getAltitude_max()));
 
 		TextView txt_diff= (TextView) rootView.findViewById(R.id.txt_altitude_diff);
-		txt_diff.setText(String.valueOf(gps.getAltitude_diff()));
+		txt_diff.setText(String.format("%.2f", gps.getAltitude_diff()));
 
 		TextView txt_upward= (TextView) rootView.findViewById(R.id.txt_altitude_upward);
-		txt_upward.setText(String.valueOf(gps.getUpward()));
+		txt_upward.setText(String.format("%.2f", gps.getUpward()));
 
 		TextView txt_downward= (TextView) rootView.findViewById(R.id.txt_altitude_downward);
-		txt_downward.setText(String.valueOf(gps.getDownward()));
+		txt_downward.setText(String.format("%.2f", gps.getDownward()));
 	}
-
 }
