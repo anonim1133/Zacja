@@ -57,6 +57,8 @@ public class MainActivity extends ActionBarActivity {
 
 	boolean signed_in = false;
 
+	Menu menu;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,16 +97,17 @@ public class MainActivity extends ActionBarActivity {
 						api.addField("key", apikey);
 
 						String valid = api.get("LoginCheck");
-						if( !valid.equals("false") ){
-							showMainScreen();
+						if( !valid.equals("false") && valid.length() < 128 ){//signed
 							signed_in = true;
+
 							Log.d("Main", "Signed in");
-						}else{
-							Log.d("Main", "Valid: '" + valid + "'");
-							showMainScreen();
+							Log.d("Main", "As user: '" + valid + "'");
+
+							removeUnsignedMenu();
+						}else{//unsigned
+							Log.d("Main", "Unsigned");
 						}
 					} catch (Exception e) {
-						showMainScreen();
 						e.printStackTrace();
 						Toast.makeText(getApplicationContext(), getString(R.string.err_network), Toast.LENGTH_SHORT).show();
 					}
@@ -112,9 +115,9 @@ public class MainActivity extends ActionBarActivity {
 			});
 
 			thread.start();
-		}else{
-			showMainScreen();
 		}
+
+		showMainScreen();
 	}
 
 	@Override
@@ -122,12 +125,28 @@ public class MainActivity extends ActionBarActivity {
 		// Inflate the menu items for use in the action bar
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
 
-		if(!isSignedIn())
-			getMenuInflater().inflate(R.menu.unsigned, menu);
+		getMenuInflater().inflate(R.menu.unsigned, menu);
+
+		this.menu = menu;
+		Log.d("Menu", "onCreateOptionsMenu");
 
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	public void removeUnsignedMenu(){
+		Log.d("Menu", "remove unsigned menu");
+		if(menu != null){
+			MenuItem in = menu.findItem(R.id.action_signin);
+			MenuItem up = menu.findItem(R.id.action_signup);
+
+			if(in != null)
+				in.setVisible(false);
+			if(in != null)
+				up.setVisible(false);
+
+			invalidateOptionsMenu();
+		}
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
