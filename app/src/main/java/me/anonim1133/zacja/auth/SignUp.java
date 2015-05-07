@@ -69,7 +69,6 @@ public class SignUp extends Fragment {
 
 							String response = api.post("SignUp");
 
-							//check response
 							if(response.matches("true")) {//if true sign in
 								Log.d("UP", "Rejestracja: true");
 								Thread thread_in = new Thread(new Runnable(){
@@ -107,6 +106,7 @@ public class SignUp extends Fragment {
 								thread_in.start();
 							}else{ //else toast with error
 								toast.setText(getString(R.string.err_up));
+								toast.show();
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -118,9 +118,6 @@ public class SignUp extends Fragment {
 				});
 
 				thread_up.start();
-
-
-
 			}
 		}else{
 			Toast.makeText(getActivity(), getString(R.string.err_empty_fields), Toast.LENGTH_SHORT).show();
