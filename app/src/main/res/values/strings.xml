@@ -44,5 +44,6 @@
 	<string name="time_for_training">Czas do następnej sesji</string>
 	<string name="work_notification_title">Czas poćwiczyć!</string>
 	<string name="work_notification_text">Co powiesz na krótki spacerek?</string>
+	<string name="err_user_duplicate">Użytkownik o takim loginie już istnieje.</string>
 
 </resources>

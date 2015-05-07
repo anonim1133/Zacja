@@ -105,7 +105,12 @@ public class SignUp extends Fragment {
 
 								thread_in.start();
 							}else{ //else toast with error
-								toast.setText(getString(R.string.err_up));
+								if(response.matches("duplicate")){
+									toast.setText(getString(R.string.err_user_duplicate));
+								}else{
+									toast.setText(getString(R.string.err_up));
+								}
+								
 								toast.show();
 							}
 						} catch (Exception e) {
