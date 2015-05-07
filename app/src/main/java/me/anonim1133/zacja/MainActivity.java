@@ -109,8 +109,12 @@ public class MainActivity extends ActionBarActivity {
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
-						Toast.makeText(getApplicationContext(), getString(R.string.err_network), Toast.LENGTH_SHORT).show();
-					}
+						runOnUiThread(new Runnable() {
+							public void run() {
+								Toast.makeText(getApplicationContext(), getString(R.string.err_network), Toast.LENGTH_SHORT).show();
+							}
+						});
+				}
 				}
 			});
 
