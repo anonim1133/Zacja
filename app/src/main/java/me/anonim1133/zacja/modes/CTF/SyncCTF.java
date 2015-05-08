@@ -3,6 +3,7 @@ package me.anonim1133.zacja.modes.CTF;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -108,5 +109,7 @@ public class SyncCTF {
 				e.printStackTrace();
 			}
 		}
+
+		Toast.makeText(c, c.getString(R.string.conquer_sync_finish), Toast.LENGTH_SHORT).show();
 	}
 }

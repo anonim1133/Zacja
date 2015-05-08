@@ -3,6 +3,7 @@ package me.anonim1133.zacja.modes.Training;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,7 +89,7 @@ public class SyncTraining {
 
 				last_id++;
 			}
-
+			Toast.makeText(c, c.getString(R.string.training_sync_finish), Toast.LENGTH_SHORT).show();
 		}
 
 		db.close();
