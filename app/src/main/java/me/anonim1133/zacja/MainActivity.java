@@ -134,6 +134,8 @@ public class MainActivity extends ActionBarActivity {
 		this.menu = menu;
 		Log.d("Menu", "onCreateOptionsMenu");
 
+		removeUnsignedMenu();
+
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -149,6 +151,8 @@ public class MainActivity extends ActionBarActivity {
 				up.setVisible(false);
 
 			invalidateOptionsMenu();
+		}else{
+			Log.d("Menu", "Menu == null");
 		}
 	}
 
@@ -197,6 +201,9 @@ public class MainActivity extends ActionBarActivity {
 			System.exit(0);
 			//super.onBackPressed();
 		}
+
+		removeScore();
+		removeUnsignedMenu();
 	}
 
 	public boolean isSignedIn(){
@@ -302,6 +309,7 @@ public class MainActivity extends ActionBarActivity {
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showCTF(){
@@ -310,6 +318,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("CTF")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showTraining(){
@@ -318,6 +327,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Training")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showWork(){
@@ -326,6 +336,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Work")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showWork(int succession){
@@ -340,6 +351,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Work")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 
@@ -350,6 +362,7 @@ public class MainActivity extends ActionBarActivity {
 		getFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment)
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void selectBiking(View view){
@@ -358,6 +371,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Biking")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void selectRunning(View view){
@@ -366,6 +380,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Running")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void selectWalking(View view){
@@ -374,6 +389,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Walking")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void selectWalking(int goal, int succession){
@@ -389,6 +405,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Walking")
 				.commitAllowingStateLoss();
+		removeUnsignedMenu();
 	}
 
 	public void selectJumping(View view){
@@ -397,6 +414,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container,fragment)
 				.addToBackStack("Jumping")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void selectSquats(View view){
@@ -405,6 +423,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Squats")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showList(){
@@ -413,6 +432,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("List")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showTrainingDetails(int id){
@@ -427,6 +447,7 @@ public class MainActivity extends ActionBarActivity {
 				.replace(R.id.container, fragment)
 				.addToBackStack("Score")
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void showScore(int score){
@@ -440,16 +461,20 @@ public class MainActivity extends ActionBarActivity {
 		getFragmentManager().beginTransaction()
 				.add(R.id.container, score_fragment)
 				.commit();
+		removeUnsignedMenu();
 	}
 
 	public void removeScore(){
-		getFragmentManager().beginTransaction().remove(score_fragment).commit();
-		Log.d("Score", "Animation remove");
+		if(score_fragment != null){
+			getFragmentManager().beginTransaction().remove(score_fragment).commit();
+			Log.d("Score", "Animation remove");
+		}
 	}
 
 	public void onScan(View view) {
 		MapsActivity a = (MapsActivity)fragment;
 		a.onScan();
+		removeUnsignedMenu();
 	}
 
 	public void showNotification(String notification_title, String notification_text){

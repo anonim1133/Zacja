@@ -42,9 +42,9 @@ public class Api {
 
 		//Initialize HTTPClient
 		HttpParams httpParameters = new BasicHttpParams();
-		int timeoutConnection = 1024; //waiting for connection
+		int timeoutConnection = 2048; //waiting for connection
 		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-		int timeoutSocket = 2048; //waiting for data
+		int timeoutSocket = 4096; //waiting for data
 		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 
 		httpclient = new DefaultHttpClient(httpParameters);

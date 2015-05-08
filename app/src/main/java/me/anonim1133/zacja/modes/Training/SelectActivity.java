@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -35,7 +36,8 @@ public class SelectActivity extends Fragment {
 
 		MainActivity a = (MainActivity)getActivity();
 
-		if(a.isSignedIn())
+		if(a.isSignedIn()) {
 			inflater.inflate(R.menu.training_menu, menu);
+		}
 	}
 }
