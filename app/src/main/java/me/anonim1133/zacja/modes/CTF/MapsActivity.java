@@ -168,6 +168,10 @@ public class MapsActivity extends Fragment {
 
 	public void onScanFinish(List<ScanResult> wifis){
 		Location current_location = mMap.getMyLocation();
+
+		if(current_location == null)
+			return;
+
 		Float distance = 0.0f;
 		Boolean add = true;
 
