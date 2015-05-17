@@ -141,7 +141,8 @@ public class MainActivity extends ActionBarActivity {
 
 	public void removeUnsignedMenu(){
 		Log.d("Menu", "remove unsigned menu");
-		if(menu != null){
+
+		if(menu != null && isSignedIn()){
 			MenuItem in = menu.findItem(R.id.action_signin);
 			MenuItem up = menu.findItem(R.id.action_signup);
 
@@ -258,7 +259,7 @@ public class MainActivity extends ActionBarActivity {
 		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 		final int last_id = sharedPref.getInt("last_sync_training_id", 0);
 		if(signed_in){
-			Thread thread = new Thread(new Runnable(){
+	Thread thread = new Thread(new Runnable(){
 				@Override
 				public void run() {
 					try {
@@ -279,8 +280,8 @@ public class MainActivity extends ActionBarActivity {
 			});
 
 			thread.start();
-		}
 
+		}
 	}
 
 	// --------

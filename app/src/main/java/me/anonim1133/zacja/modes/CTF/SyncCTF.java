@@ -109,7 +109,5 @@ public class SyncCTF {
 				e.printStackTrace();
 			}
 		}
-
-		Toast.makeText(c, c.getString(R.string.conquer_sync_finish), Toast.LENGTH_SHORT).show();
 	}
 }

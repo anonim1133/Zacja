@@ -35,6 +35,7 @@ public class SyncTraining {
 		db = new DataBaseHelper(c);
 
 		last_id++;
+
 		if(db.training.getCount() > 0){
 
 			Cursor training = db.training.getLast(1);
@@ -89,7 +90,7 @@ public class SyncTraining {
 
 				last_id++;
 			}
-			Toast.makeText(c, c.getString(R.string.training_sync_finish), Toast.LENGTH_SHORT).show();
+
 		}
 
 		db.close();
