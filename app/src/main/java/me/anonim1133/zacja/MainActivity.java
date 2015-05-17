@@ -212,7 +212,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void onHomePressed(){
-
+		onBackPressed();
 	}
 
 	private void onListPressed(){
