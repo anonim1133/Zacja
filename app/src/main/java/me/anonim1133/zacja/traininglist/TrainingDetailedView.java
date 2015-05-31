@@ -105,7 +105,14 @@ public class TrainingDetailedView extends Fragment {
 		tv_data.setText(newDateStr);
 
 		tv_score.setText(training.getString(training.getColumnIndexOrThrow("score")));
-		tv_time.setText(training.getString(training.getColumnIndexOrThrow("time")));
+
+		Integer totalSecs = training.getInt(training.getColumnIndexOrThrow("time"))/1000;
+		Integer hours = totalSecs / 3600;
+		Integer minutes = (totalSecs % 3600) / 60;
+		Integer seconds = totalSecs % 60;
+
+		tv_time.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+
 		tv_time_active.setText(training.getString(training.getColumnIndexOrThrow("time_active")));
 		tv_tempo.setText(training.getString(training.getColumnIndexOrThrow("tempo_avg")));
 		tv_distance.setText(training.getString(training.getColumnIndexOrThrow("distance")));
