@@ -328,7 +328,7 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 		Log.d(TAG, "stopPeriodicUpdates/1");
 		String filename = gpx.close();
 
-		db.addTrainingWork(filename, activity_name, time, time_active, step_count, speed_max, avg_speed.get(), tempo_min, avg_tempo.get(), total_distance, (int)altitude_min, (int)altitude_max, (int)upward, (int)downward);
+		db.addTrainingWork(filename, activity_name, time, time_active, step_count, speed_max, avg_speed.get(), tempo_min, avg_tempo.get(), total_distance, (int) altitude_min, (int) altitude_max, (int) upward, (int) downward);
 
 		time = 0;
 		time_active = 0;
@@ -357,7 +357,12 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 
 		String filename = gpx.close();
 
-		db.addTraining(filename, activity_name, time, time_active, step_count, speed_max, avg_speed.get(), tempo_min, avg_tempo.get(), total_distance, (int)altitude_min, (int)altitude_max, (int)upward, (int)downward);
+		try{
+			db.addTraining(filename, activity_name, time, time_active, step_count, speed_max, avg_speed.get(), tempo_min, avg_tempo.get(), total_distance, (int)altitude_min, (int)altitude_max, (int)upward, (int)downward);
+		}catch (NullPointerException e){
+			e.printStackTrace();
+		}
+
 
 		time = 0;
 		time_active = 0;
@@ -378,25 +383,34 @@ public class GpsHelper extends Activity implements LocationListener, GooglePlayS
 		downward = 0;
 		step_count = 0;
 
-		locationClient.removeLocationUpdates(this);
+		try{
+			locationClient.removeLocationUpdates(this);
+		}catch (IllegalStateException e){
+			e.printStackTrace();
+		}
+
 	}
 
 	private void showErrorDialog(int errorCode) {
 
-		// Get the error dialog from Google Play services
-		Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-				errorCode,
-				this,
-				CONNECTION_FAILURE_RESOLUTION_REQUEST);
+		try {
+			// Get the error dialog from Google Play services
+			Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
+					errorCode,
+					this,
+					CONNECTION_FAILURE_RESOLUTION_REQUEST);
 
-		// If Google Play services can provide an error dialog
-		if (errorDialog != null) {
+			// If Google Play services can provide an error dialog
+			if (errorDialog != null) {
 
-			// Create a new DialogFragment in which to show the error dialog
-			ErrorDialogFragment errorFragment = new ErrorDialogFragment();
+				// Create a new DialogFragment in which to show the error dialog
+				ErrorDialogFragment errorFragment = new ErrorDialogFragment();
 
-			// Show the error dialog in the DialogFragment
-			errorFragment.show(getFragmentManager(), TAG);
+				// Show the error dialog in the DialogFragment
+				errorFragment.show(getFragmentManager(), TAG);
+			}
+		}catch (NullPointerException e){
+			Log.d("ERROR", "NULL POINTER EXCEPTION" + e.getLocalizedMessage() + e.toString());
 		}
 	}
 

@@ -44,7 +44,7 @@ public class Score extends Fragment {
 		tv_score.setText(String.valueOf(score));
 
 		final Animation out = new AlphaAnimation(1.0f, 0.0f);
-		out.setDuration(3000);
+		out.setDuration(1000);
 		out.setAnimationListener(new Animation.AnimationListener(){
 
 			@Override
@@ -65,7 +65,7 @@ public class Score extends Fragment {
 		});
 
 		Animation in = new AlphaAnimation(0.0f, 1.0f);
-		in.setDuration(3000);
+		in.setDuration(1000);
 		in.setAnimationListener(new Animation.AnimationListener() {
 
 			@Override
