@@ -3,13 +3,11 @@ package me.anonim1133.zacja.modes.Training;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -33,8 +31,6 @@ public class SyncTraining {
 
 	public int go(int last_id) throws SQLException, JSONException{
 		db = new DataBaseHelper(c);
-
-		last_id++;
 
 		if(db.training.getCount() > 0){
 
